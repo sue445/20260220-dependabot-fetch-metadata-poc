@@ -17,7 +17,8 @@ jobs:
         with:
           app-id: ${{ secrets.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-          permission-vulnerability-alerts: read
+          # permission-vulnerability-alerts: read
+          permission-pull-requests: read
 
       - name: Dependabot metadata
         id: metadata
