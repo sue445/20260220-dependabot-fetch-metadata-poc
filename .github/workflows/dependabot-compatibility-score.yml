@@ -37,6 +37,9 @@ jobs:
 
     if: github.actor == 'dependabot[bot]'
 
+    permissions:
+      pull-requests: read
+
     steps:
       - uses: actions/checkout@v6
 
