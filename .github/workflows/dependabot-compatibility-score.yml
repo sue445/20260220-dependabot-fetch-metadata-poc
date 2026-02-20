@@ -4,7 +4,7 @@ on:
   pull_request:
 
 jobs:
-  dependabot:
+  dependabot-app-token:
     runs-on: ubuntu-slim
 
     if: github.actor == 'dependabot[bot]'
@@ -25,6 +25,26 @@ jobs:
         uses: dependabot/fetch-metadata@v2
         with:
           github-token: ${{ steps.app-token.outputs.token }}
+          compat-lookup: true
+
+      - name: print compatibility-score
+        run: echo "COMPATIBILITY_SCORE=${COMPATIBILITY_SCORE}"
+        env:
+          COMPATIBILITY_SCORE: ${{ steps.metadata.outputs.compatibility-score }}
+
+  dependabot-github-token:
+    runs-on: ubuntu-slim
+
+    if: github.actor == 'dependabot[bot]'
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           compat-lookup: true
 
       - name: print compatibility-score
