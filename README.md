@@ -1,0 +1,1 @@
+# 20260220-dependabot-fetch-metadata-poc
