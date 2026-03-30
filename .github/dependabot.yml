@@ -7,3 +7,10 @@ updates:
     assignees:
       - sue445
     versioning-strategy: lockfile-only
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    assignees:
+      - sue445
