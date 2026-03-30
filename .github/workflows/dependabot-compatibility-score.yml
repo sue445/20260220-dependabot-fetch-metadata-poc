@@ -4,33 +4,33 @@ on:
   pull_request:
 
 jobs:
-  dependabot-app-token:
-    runs-on: ubuntu-slim
-
-    if: github.actor == 'dependabot[bot]'
-
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: actions/create-github-app-token@v3
-        id: app-token
-        with:
-          app-id: ${{ secrets.GH_APP_ID }}
-          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
-          # permission-vulnerability-alerts: read # This doesn't work
-          permission-pull-requests: read # This works
-
-      - name: Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v2
-        with:
-          github-token: ${{ steps.app-token.outputs.token }}
-          compat-lookup: true
-
-      - name: print compatibility-score
-        run: echo "COMPATIBILITY_SCORE=${COMPATIBILITY_SCORE}"
-        env:
-          COMPATIBILITY_SCORE: ${{ steps.metadata.outputs.compatibility-score }}
+  # dependabot-app-token:
+  #   runs-on: ubuntu-slim
+  #
+  #   if: github.actor == 'dependabot[bot]'
+  #
+  #   steps:
+  #     - uses: actions/checkout@v6
+  #
+  #     - uses: actions/create-github-app-token@v3
+  #       id: app-token
+  #       with:
+  #         app-id: ${{ secrets.GH_APP_ID }}
+  #         private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+  #         # permission-vulnerability-alerts: read # This doesn't work
+  #         permission-pull-requests: read # This works
+  #
+  #     - name: Dependabot metadata
+  #       id: metadata
+  #       uses: dependabot/fetch-metadata@v2
+  #       with:
+  #         github-token: ${{ steps.app-token.outputs.token }}
+  #         compat-lookup: true
+  #
+  #     - name: print compatibility-score
+  #       run: echo "COMPATIBILITY_SCORE=${COMPATIBILITY_SCORE}"
+  #       env:
+  #         COMPATIBILITY_SCORE: ${{ steps.metadata.outputs.compatibility-score }}
 
   dependabot-github-token:
     runs-on: ubuntu-slim
