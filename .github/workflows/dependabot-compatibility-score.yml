@@ -1,7 +1,7 @@
 name: dependabot-compatibility-score
 
 on:
-  pull_request:
+  pull_request_target:
 
 jobs:
   # dependabot-app-token:
